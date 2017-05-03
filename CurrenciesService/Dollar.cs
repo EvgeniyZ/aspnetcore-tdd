@@ -4,15 +4,32 @@ namespace CurrenciesService
 {
     public class Dollar
     {
-        public int Amount = 10;
+        private int _amount;
         public Dollar(int amount)
         {
-
+            _amount = amount;
         }
 
-        public void Times(int multiplicator)
+        public Dollar Times(int multiplicator)
         {
+            return new Dollar(_amount * multiplicator);
+        }
 
+        public override bool Equals(object obj)
+        {
+            var dollar = obj as Dollar;
+            if (dollar == null)
+            {
+                return false;
+            }
+            return _amount == dollar._amount;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            // TODO: write your implementation of GetHashCode() here
+            throw new System.NotImplementedException();
         }
     }
 }
