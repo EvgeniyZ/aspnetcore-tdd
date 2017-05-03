@@ -56,6 +56,9 @@ project.fragment.lock.json
 artifacts/
 **/Properties/launchSettings.json
 
+#Visual Studio Code
+.vscode
+
 *_i.c
 *_p.c
 *_i.h
