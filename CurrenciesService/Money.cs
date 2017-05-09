@@ -11,30 +11,31 @@ namespace CurrenciesService
             Amount = amount;
             Currency = currency;
         }
-        public Money Reduce(string to)
+        public Money Reduce(Bank bank, string to)
         {
-            return this;
+            int rate = bank.GetRate(this.Currency, to);
+            return new Money(Amount / rate, to);
         }
         public static Money Dollar(int amount)
         {
             return new Money(amount, "USD");
         }
-
         public static Money Franc(int amount)
         {
             return new Money(amount, "CHF");
         }
-
-        public Sum Plus(Money money)
+        public static Money Ruble(int amount) 
+        {
+            return new Money(amount, "RUB");
+        }
+        public IExpression Plus(Money money)
         {
             return new Sum(this, money);
         }
-
         public Money Times(int multiplicator)
         {
             return new Money(Amount * multiplicator, Currency);
         }
-
         public override bool Equals(object obj)
         {
             var money = obj as Money;
@@ -44,7 +45,6 @@ namespace CurrenciesService
             }
             return Amount == money.Amount && Currency == money.Currency;
         }
-
         // override object.GetHashCode
         public override int GetHashCode()
         {

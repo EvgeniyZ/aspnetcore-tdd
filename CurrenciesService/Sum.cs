@@ -9,8 +9,7 @@ namespace CurrenciesService
         }
         public Money Augend { get; }
         public Money Addend { get; }
-
-        public Money Reduce(string to)
+        public Money Reduce(Bank bank, string to)
         {
             return new Money(Augend.Amount + Addend.Amount, to);
         }
